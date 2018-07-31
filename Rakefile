@@ -12,6 +12,8 @@ namespace :db do
   desc "drop and recreate the db"
   task :reset => [:drop, :migrate]
 
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+
   desc "drop the db"
   task :drop do
     connection_details = YAML::load(File.open('config/database.yml'))
